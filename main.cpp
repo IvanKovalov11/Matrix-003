@@ -1,5 +1,4 @@
-#include <iostream>
-#include <sstream>
+
 #include <string>
 #include <fstream>
 
@@ -67,7 +66,7 @@ bool add(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 	for (int i = 0; i < res_r; ++i)
 	{
 		res_elem[i] = new float[res_col];
-		for (int j = 0; j < res_col; ++j)
+		for (int j = 0; j < res_col; ++j
 		{
 			res_elem[i][j] = left_elem[i][j] + right_elem[i][j];
 		}
@@ -77,7 +76,7 @@ bool add(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 
 bool sub(float **left_elem, int left_r, int left_col, float **right_elem, int right_r, int right_col, float ** & res_elem, int & res_r, int & res_col)
 {
-	if (left_r != right_r || left_col != right_col)
+	if (left_r != right_r || left_col != right_col
 	{
 		return false;
 	}
@@ -86,7 +85,7 @@ bool sub(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 	res_elem = new float *[res_r];
 	for (int i = 0; i < res_r; ++i)
 	{
-		res_elem[i] = new float[res_col];
+		res_elem[i] = new float[res_col]
 		for (int j = 0; j < res_col; ++j)
 		{
 			res_elem[i][j] = left_elem[i][j] - right_elem[i][j];
@@ -95,7 +94,7 @@ bool sub(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 	return true;
 }
 
-bool mul(float **left_elem, int left_r, int left_col, float **right_elem, int right_r, int right_col, float ** & res_elem, int & res_r, int & res_col)
+bool mul(float **left_elem, int left_r, int left_col, float **right_elem, int right_r, int right_col, float ** & res_elem, int & res_r, int & res_col
 {
 	if (left_col != right_r) 
 	{
@@ -104,7 +103,7 @@ bool mul(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 	res_r = left_r;
 	res_col = right_col;
 	res_elem = new float *[res_r];
-	for (int i = 0; i < res_r; ++i)
+	for (int i = 0; i < res_r; ++i
 	{
 		res_elem[i] = new float[res_col];
 		for (int j = 0; j < res_col; ++j) 
@@ -113,7 +112,7 @@ bool mul(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 			for (int k = 0; k < left_col; ++k)
 			{
 				res_op += left_elem[i][k] * right_elem[k][j];
-			}
+			
 			res_elem[i][j] = res_op;
 		}
 	}
@@ -122,7 +121,7 @@ bool mul(float **left_elem, int left_r, int left_col, float **right_elem, int ri
 
 bool transpose(float **A, int r, int col, float ** & res_elem, int & res_r, int & res_col) 
 {
-	res_r = col;
+	res_r = col
 	res_col = r;
 	res_elem = new float *[res_r];
 	for (int i = 0; i < res_r; ++i)
@@ -131,7 +130,7 @@ bool transpose(float **A, int r, int col, float ** & res_elem, int & res_r, int 
 		for (int j = 0; j < res_col; ++j)
 		{
 			res_elem[i][j] = A[j][i];
-		}
+		
 	}
 	return true;
 }
@@ -140,7 +139,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 {
 	if (r != col) 
 	{
-		return false;
+		return false
 	}
 	res_r = r; 
 	res_col = col;
@@ -149,7 +148,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 	{
 		res_elem[i] = new float[res_col];
 	}
-	float temp;
+	float temp
 	float **E = new float *[r];
 	for (int i = 0; i < r; i++)
 	{
@@ -158,7 +157,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 	for (int i = 0; i < r; i++)
 	{
 		for (int j = 0; j < r; j++)
-		{
+		
 			E[i][j] = 0;
 			if (i == j)
 			{
@@ -167,7 +166,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 		}
 	}
 	for (int k = 0; k < r; k++)
-	{
+	
 		temp = A[k][k];
 		if (temp == 0)
 		{
@@ -176,7 +175,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 		}
 		for (int j = 0; j < r; j++)
 		{
-			A[k][j] /= temp;
+			A[k][j] /= temp
 			E[k][j] /= temp;
 		}
 		for (int i = k + 1; i < r; i++)
@@ -185,7 +184,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 			for (int j = 0; j < r; j++)
 			{
 				A[i][j] -= A[k][j] * temp;
-				E[i][j] -= E[k][j] * temp;
+				E[i][j] -= E[k][j] * temp
 			}
 		}
 	}
@@ -194,7 +193,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 		for (int i = k - 1; i >= 0; i--)
 		{
 			temp = A[i][k];
-			for (int j = 0; j < r; j++)
+			for (int j = 0; j < r; j++
 			{
 				A[i][j] -= A[k][j] * temp;
 				E[i][j] -= E[k][j] * temp;
@@ -203,7 +202,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 	}
 	for (int i = 0; i < r; i++)
 	{
-		for (int j = 0; j < r; j++)
+		for (int j = 0; j < r; j++
 		{
 			A[i][j] = E[i][j];
 			res_elem[i][j] = A[i][j];
@@ -212,7 +211,7 @@ bool reverse(float **A, int r, int col, float ** & res_elem, int & res_r, int & 
 	return true;
 }
 
-void destroy(float ** & matrix, int & r)
+void destroy(float ** & matrix, int & r
 {
 	for (int i = 0; i<r; ++i)
 	{
@@ -221,7 +220,7 @@ void destroy(float ** & matrix, int & r)
 	delete[]matrix;
 }
 
-int main()
+int main(
 {
 	string name1, name2;
 	char op;
@@ -230,7 +229,7 @@ int main()
 		return 10;
 	}
 	float **left_elem;
-	int left_r, left_col;
+	int left_r, left_col
 	if (!(ReadFileData(left_elem, left_r, left_col, name1)))
 	{
 		cout << "An error has occured while reading input data" << endl;
@@ -239,7 +238,7 @@ int main()
 	if ((op != '+') && (op != '-') && (op != '*') && (op != 'R') && (op != 'T'))
 	{
 		cout << "An error has occured while reading input data" << endl;
-		return -2;
+		return -2
 	}
 	float **res_elem;
 	int res_r, res_col;
@@ -256,77 +255,11 @@ int main()
 		}
 		if (!(add(left_elem, left_r, left_col, right_elem, right_r, right_col, res_elem, res_r, res_col))) 
 		{
-			cout << "An error has occured while reading input data" << endl;
+			cout << "An error has occured while reading input data" << endl
 			return -10;
 		}
 		break;
 	}
 	case '-':
 	{
-		float **right_elem;
-		int right_r, right_col;
-		if (!(ReadFileData(right_elem, right_r, right_col, name2))) 
-		{
-			cout << "An error has occured while reading input data" << endl;
-			return -3;
-		}
-		if (!(sub(left_elem, left_r, left_col, right_elem, right_r, right_col, res_elem, res_r, res_col)))
-		{
-			cout << "An error has occured while reading input data" << endl;
-			return -10;
-		}
-		break;
-	}
-	case '*': 
-	{
-		float **right_elem;
-		int right_r, right_col;
-		if (!(ReadFileData(right_elem, right_r, right_col, name2)))
-		{
-			cout << "An error has occured while reading input data" << endl;
-			return -3;
-		}
-		if (!(mul(left_elem, left_r, left_col, right_elem, right_r, right_col, res_elem, res_r, res_col)))
-		{
-			cout << "An error has occured while reading input data" << endl;
-			return -10;
-		}
-		break;
-	}
-	case 'T':
-	{
-		if (!(transpose(left_elem, left_r, left_col, res_elem, res_r, res_col)))
-		{
-			cout << "An error has occured while reading input data" << endl;
-			return -10;
-		}
-		break;
-	}
-	case 'R':
-	{
-		bool p = 0;
-		if (!(reverse(left_elem, left_r, left_col, res_elem, res_r, res_col, p)))
-		{
-			cout << "An error has occured while reading input data" << endl;
-			return -10;
-		}
-		if (p) 
-		{
-			cout << "There is no reverse matrix" << endl;
-			return -20;
-		}
-		break;
-	}
-	}
-	destroy(left_elem, left_r);
-	for (int i = 0; i < res_r; ++i) 
-	{
-		for (int j = 0; j < res_col; ++j) 
-		{
-			cout << res_elem[i][j] << " ";
-		}
-		cout << endl;
-	}
-	destroy(res_elem, res_r);
-	return 0;
-}
+	
