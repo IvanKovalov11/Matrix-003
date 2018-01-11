@@ -226,38 +226,30 @@ bool read_matrix(float ** & elements, unsigned int & result_rows, unsigned int &
 	char symbol;
 	ifstream stream;
 	stream.open(s);
-	if (!(stream.is_open())
+ 	if ((stream >> result_rows) && (stream >> symbol) && (stream >> result_columns)) 
 	    {
-		    cout << "File cannot be open";
-	    }
-	    else
-	    {
- 	     	    if ((stream >> result_rows) && (stream >> symbol) && (stream >> result_columns)) 
-		    {
-			create(elements, result_rows, result_columns);
-			bool success = true;
-			for (int i = 0; i < result_rows && success; ++i)
+		create(elements, result_rows, result_columns);
+		bool success = true;
+		for (int i = 0; i < result_rows && success; ++i)
+		{
+			for (int j = 0; j < result_columns; ++j) 
 			{
-				for (int j = 0; j < result_columns; ++j) 
+				if (!(stream >> elements[i][j])) 
 				{
-					if (!(stream >> elements[i][j])) 
-					{
-						success = false;
-						break;
-					}
+					success = false;
+					break;
 				}
 			}
-			stream.close();
-			return success;
-
 		}
-
-		else 
-		{
-			stream.close();
-			return false;
+		stream.close();
+		return success;
 		}
-	    }
+	else 
+	{
+		stream.close();
+		return false;
+	}
+    }
 }
 
 void destroy(float ** elements, unsigned int rows, unsigned int columns) 
