@@ -250,3 +250,89 @@ bool read_matrix(float ** & elements, unsigned int & result_rows, unsigned int &
 		return false;
 	}
 }
+
+void destroy(float ** elements, unsigned int rows, unsigned int columns)
+{
+	for (unsigned int i = 0; i < rows; ++i)
+	{
+		delete[] elements[i];
+	}
+	delete[] elements;
+}
+
+int main()
+{
+	unsigned rows1, columns1;
+	unsigned rows2, columns2;
+	unsigned rows, columns;
+	char symbol;
+	bool q;
+	string s, str1, str2;
+	getline(cin, s);
+	istringstream stream(s);
+	stream >> str1 >> symbol >> str2;
+	q = read_matrix(matrix1, rows1, columns1, str1);
+	if (q)
+	{
+		switch (symbol)
+		{
+		case '+':
+			q = read_matrix(matrix2, rows2, columns2, str2);
+			add(matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows, columns);
+			if (q)
+				write(matrix, rows, columns);
+			else
+				cout << "An error has occured while reading input data";
+			destroy(matrix1, rows1, columns1);
+			destroy(matrix2, rows2, columns2);
+			destroy(matrix, rows, columns);
+			break;
+		case '-':
+			q = read_matrix(matrix2, rows2, columns2, str2);
+			sub(matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows, columns);
+			if (q)
+				write(matrix, rows, columns);
+			else
+				cout << "An error has occured while reading input data";
+			destroy(matrix1, rows1, columns1);
+			destroy(matrix2, rows2, columns2);
+			destroy(matrix, rows, columns);
+			break;
+		case '*':
+			q = read_matrix(matrix2, rows2, columns2, str2);
+			multiply(matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows, columns);
+			if (q)
+				write(matrix, rows, columns);
+			else
+				cout << "An error has occured while reading input data";
+			destroy(matrix1, rows1, columns1);
+			destroy(matrix2, rows2, columns2);
+			destroy(matrix, rows, columns);
+			break;
+		case 'T':
+			transpose(matrix1, rows1, columns1, matrix, rows, columns);
+			write(matrix, rows, columns);
+			destroy(matrix1, rows1, columns1);
+			destroy(matrix2, rows2, columns2);
+			destroy(matrix, rows, columns);
+			break;
+		case 'R':
+			q = reversing(matrix1, rows1, columns1, matrix, rows, columns);
+			if (q)
+				write(matrix, rows1, columns1);
+			else
+			{
+				cout << "There is no reverse matrix";
+				cout << endl;
+			}
+			destroy(matrix1, rows1, columns1);
+			destroy(matrix2, rows2, columns2);
+			destroy(matrix, rows, columns);
+			break;
+		}
+	}
+	else
+		cout << "An error has occured while reading input data";
+	cin.get();
+	return 0;
+}
